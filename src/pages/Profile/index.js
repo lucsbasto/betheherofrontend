@@ -1,17 +1,23 @@
 import React, { useEffect, useState } from "react";
 import logoImg from "../../assets/logo.svg";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { FiPower, FiTrash2 } from "react-icons/fi";
 import api from "../../services/api";
 
 import "./styles.css";
 export default function Profile() {
   const [incidents, setIncidents] = useState([]);
+  const history = useHistory();
   const ongName = localStorage.getItem("ongName");
   const ongId = localStorage.getItem("ongId");
   useEffect(() => {
     getIncidents();
   }, [ongId]);
+  //atualizando toda vez que o array de incidentes for atualizado
+  useEffect(() => {
+    getIncidents();
+  }, [incidents]);
+
   async function getIncidents() {
     try {
       const { data } = await api.get("/ong/incidents", {
@@ -25,7 +31,25 @@ export default function Profile() {
     }
   }
 
-  console.log("incidents2", incidents);
+  async function handleDeleteIncident(id) {
+    try {
+      await api.delete(`/incidents/${id}`, {
+        headers: {
+          Authorization: ongId
+        }
+      });
+      //realizando a remoção do incident na mão
+      setIncidents(incidents.filter(incident => incident.id !== id));
+    } catch (error) {
+      alert("Erro ao deletar, tente novamente");
+    }
+  }
+
+  async function handleLogout() {
+    localStorage.clear();
+    history.push("/");
+  }
+
   return (
     <div className="profile-container">
       <header>
@@ -35,7 +59,7 @@ export default function Profile() {
           Cadastrar novo caso
         </Link>
         <button type="button">
-          <FiPower size={18} color="#E02041" />
+          <FiPower onClick={handleLogout} size={18} color="#E02041" />
         </button>
       </header>
       <h1>Casos cadastrados</h1>
@@ -56,7 +80,10 @@ export default function Profile() {
               }).format(incident.value)}
             </p>
 
-            <button type="button">
+            <button
+              type="button"
+              onClick={() => handleDeleteIncident(incident.id)}
+            >
               <FiTrash2 />
             </button>
           </li>

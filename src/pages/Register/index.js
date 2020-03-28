@@ -6,11 +6,11 @@ import api from "../../services/api";
 import "./styles.css";
 
 export default function Register() {
-  const [name, setName] = useState("Ong");
-  const [email, setEmail] = useState("ong@ong.com");
-  const [whatsapp, setWhatsapp] = useState("0000000000");
-  const [city, setCity] = useState("São Paulo");
-  const [UF, setUf] = useState("SP");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [whatsapp, setWhatsapp] = useState("");
+  const [city, setCity] = useState("");
+  const [UF, setUf] = useState("");
   const history = useHistory();
   async function handleRegister(e) {
     e.preventDefault();
