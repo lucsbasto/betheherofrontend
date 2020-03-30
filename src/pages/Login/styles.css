@@ -9,6 +9,12 @@
     justify-content: space-between;
 }
 
+.dark {
+    background-color: #696969;
+    color: #f0f0f5
+}
+
+
 .login-container section.form {
     width: 100%;
     max-width: 350px;

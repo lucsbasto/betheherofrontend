@@ -9,6 +9,8 @@ export default function NewIncident() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [value, setValue] = useState("");
+  const [dark, setDark] = useState(false);
+
   const history = useHistory();
   async function handleSubmit(e) {
     e.preventDefault();
@@ -29,44 +31,65 @@ export default function NewIncident() {
       alert("erro: ", error);
     }
   }
+
+  function changeTheme() {
+    var body = document.getElementById("body");
+    var link = document.getElementById("link");
+    var content = document.getElementById("content");
+
+    if (!dark) {
+      body.classList.add("dark");
+      link.classList.add("dark");
+      content.classList.add("dark");
+    } else {
+      body.classList.remove("dark");
+      link.classList.remove("dark");
+      content.classList.remove("dark");
+    }
+    setDark(!dark);
+    localStorage.setItem("dark", !dark);
+  }
+
   return (
-    <div className="new-incident-container">
-      <div className="content">
-        <section>
-          <img src={logoImg} alt="Be The Hero" />
+    <div id="body">
+      <div className="new-incident-container">
+        <div id="content" className="content">
+          <section>
+            <img src={logoImg} alt="Be The Hero" onClick={changeTheme} />
 
-          <h1>Cadastrar novo caso</h1>
-          <p>
-            Descreva o caso detalhadamente para encontrar um herói para resolver
-            isso.
-          </p>
+            <h1>Cadastrar novo caso</h1>
+            <p>
+              Descreva o caso detalhadamente para encontrar um herói para
+              resolver isso.
+            </p>
 
-          <Link className="back-link" to="/profile">
-            <FiArrowLeft size={16} color="#E02041" />
-            Voltar para home
-          </Link>
-        </section>
+            <Link id="link" className="back-link" to="/profile">
+              <FiArrowLeft size={16} color="#E02041" />
+              Voltar para home
+            </Link>
+          </section>
 
-        <form onSubmit={handleSubmit}>
-          <input
-            value={title}
-            onChange={e => setTitle(e.target.value)}
-            placeholder="Título do caso"
-          />
-          <textarea
-            value={description}
-            onChange={e => setDescription(e.target.value)}
-            placeholder="Descrição"
-          />
-          <input
-            type="number"
-            value={value}
-            onChange={e => setValue(e.target.value)}
-            placeholder="Valor em reais"
-          />
+          <form onSubmit={handleSubmit}>
+            <input
+              value={title}
+              onChange={e => setTitle(e.target.value)}
+              placeholder="Título do caso"
+            />
+            <textarea
+              value={description}
+              onChange={e => setDescription(e.target.value)}
+              placeholder="Descrição"
+            />
+            <input
+              type="number"
+              value={value}
+              onChange={e => setValue(e.target.value)}
+              placeholder="Valor em reais"
+            />
 
-          <button className="button">Cadastrar</button>
-        </form>
+            <button className="button">Cadastrar</button>
+          </form>
+        </div>
       </div>
     </div>
   );

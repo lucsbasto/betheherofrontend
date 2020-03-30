@@ -1,3 +1,13 @@
+:root {
+    --main-bg-color: #f0f0f5;
+    --main-color: #727280;
+}
+
+.dark {
+    --main-bg-color: #696969;
+    --main-color: #f0f0f5;
+}
+
 .new-incident-container {
     width: 100%;
     max-width: 1120px;
@@ -12,7 +22,7 @@
 .new-incident-container .content {
     width: 100%;
     padding: 96px;
-    background-color: #f0f0f5;
+    background-color: var(--main-bg-color);
     box-shadow: 0 0 100px rgba(0, 0, 0, .1);
     border-radius: 8px;
     display: flex;
@@ -32,7 +42,7 @@
 
 .new-incident-container .content section p {
     font-size: 18px;
-    color: #727280;
+    color: var(--main-color);
     line-height: 32px;
 }
 
