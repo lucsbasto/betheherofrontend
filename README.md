@@ -4,6 +4,10 @@
 
 Aplicação onde pessoas com coração de heróis poderão realizar seus atos de bondade com as ONG's cadastradas!
 
+## App Preview
+
+- Disponível em [BeeTheHero](https://beethehero.netlify.app)
+
 ## Be The Hero Screens
 
 | Home screen                                                               | Home screen Dark                                                               | Register screen                                                                   | Register Dark                                                                          |
@@ -32,10 +36,6 @@ Aplicação onde pessoas com coração de heróis poderão realizar seus atos de
 - git clone [https://github.com/lucsbasto/betheherofrontend](https://github.com/lucsbasto/betheherofrontend)
 - yarn ou npm install
 - yarn start
-
-## App Preview
-
-- Disponível em [BeeTheHero](https://beethehero.netlify.app)
 
 **Se puder me ajudar a melhorar o projeto ou tiver dicas faça um fork um um PR**
 
